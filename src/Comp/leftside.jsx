@@ -30,6 +30,12 @@ const Leftside = () => {
                     </span>
                 </Item>
             </ArtCard>
+            <Community>
+                <a ><span>Groups</span></a>
+                <a ><span>Events<img src="/images/plus-icon.svg" alt="" /></span></a>
+                <a ><span>Follow Hashtag</span></a>
+                <a ><span>Discover More</span></a>
+            </Community>
         </Container>
     )
 }
@@ -133,5 +139,24 @@ span{
 }
 &:hover{
     background-color: rgba(0,0,0,0.08);
+}
+`
+const Community = styled(ArtCard)`
+padding: 10px;
+text-align:left;
+display:flex;
+flex-direction:column;
+a{
+    padding:10px;
+    font-size:12px;
+    &:hover{color:#0a66c2}
+    span{
+        display:flex;
+        justify-content:space-between;
+    }
+    &:last-child{
+    color:rgba(0,0,0,0.6);
+    border-top:1px solid grey;
+}
 }
 `
