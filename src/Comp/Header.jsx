@@ -8,7 +8,7 @@ const Header = () => {
                     <a ><img src="/images/home-logo.svg" alt="" /></a>
                 </Logo>
                 <Search>
-                    <div><input type="text" placeholder='Search'/></div>
+                    <div><input type="text" placeholder='Search' /></div>
                     <SearchIcon>
                         <img src="/images/search-icon.svg" alt="" />
                     </SearchIcon>
@@ -51,6 +51,7 @@ const Header = () => {
                                 <span>Me</span>
                                 <img src="/images/down-icon.svg" alt="" />
                             </a>
+                            <SignOut><a >Sign Out</a></SignOut>
                         </User>
                         <Work>
                             <a >
@@ -66,7 +67,7 @@ const Header = () => {
 }
 
 export default Header
-const Container=styled.div`
+const Container = styled.div`
 background-color: white;
 top: 0;
 left: 0;
@@ -76,18 +77,18 @@ width: 100vw;
 z-index: 100;
 border-bottom: 1px solid rgba(0,0,0,0.0.9);
 `
-const Content=styled.div`
+const Content = styled.div`
 display: flex;
 align-items: center;
 margin: 0 auto;
 min-height: 100%;
 max-width: 1128px;
 `
-const Logo=styled.span`
+const Logo = styled.span`
 margin-right: 8px;
 font-size: 0;
 `
-const Search=styled.div`
+const Search = styled.div`
 position: relative;
 opacity: 1;
 flex-grow: 1;
@@ -110,7 +111,7 @@ flex-grow: 1;
     }
 }
 `
-const SearchIcon=styled.div`
+const SearchIcon = styled.div`
 width: 40px;
 position: absolute;
 z-index: 1;
@@ -123,7 +124,7 @@ display: flex;
 justify-content: center;
 align-items: center;
 `
-const Nav=styled.nav`
+const Nav = styled.nav`
 margin-left: auto;
 display: block;
 @media (max-width:748px){
@@ -134,7 +135,7 @@ display: block;
     width: 100%;
 }
 `
-const NavListWrap=styled.ul`
+const NavListWrap = styled.ul`
 display: flex;
 flex-wrap: nowrap;
 list-style: none;
@@ -152,7 +153,7 @@ list-style: none;
     }
 }
 `
-const NavList=styled.li`
+const NavList = styled.li`
 display: flex;
 align-items: center;
 a{
@@ -188,7 +189,24 @@ a{
 }}}
 
 `
-const User=styled(NavList)`
+const SignOut = styled.div`
+position:absolute;
+top:80px;
+right:180px;
+background:white;
+width:100px;
+height:40px;
+font-size:16px;
+transition-duration:167ms;
+text-align: center;
+display:none;   
+border-radius: 0 0 5px 5px;
+@media (max-width:768px){
+    top:65px;
+}
+`
+
+const User = styled(NavList)`
 a>img{
     width:24px;
     height:24px;
@@ -198,7 +216,14 @@ span{
     display:flex;
     align-items:center;
 }
+&:hover{
+    ${SignOut}{
+    align-items:center;
+    display:flex;
+    justify-content:center;
+}
+}
 `
-const Work=styled(User)`
+const Work = styled(User)`
 border-left:1px solid rgba(0,0,0,0.08)
 `
