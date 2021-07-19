@@ -37,7 +37,7 @@ const Main = () => {
                                 <span>Date</span>
                             </div>
                         </a>
-                        <button><img src="/images/" alt="" /></button>
+                        <button><i class="fas fa-ellipsis-h"></i></button>
                     </SharedArticle>
                 </Article>
             </div>
@@ -110,5 +110,33 @@ button{
     font-weight:600;}
     }
 }
+}
+`
+const Article = styled(CommanCard)`
+padding: 0;
+background-color:white;
+margin:10px;
+`
+const SharedArticle = styled.div`
+margin-bottom: 8px;
+display:flex;
+align-items:center;
+flex-wrap:nowrap;
+a{
+    display:flex;
+    overflow: hidden;
+    margin-right:12px;
+    flex-grow:1;
+    img{
+        width: 50px;
+        height:50px;
+    }
+    div{
+        display:flex;
+        flex-direction:column;
+        margin-left:10px;
+        flex-grow:1;
+        flex-basis: 0;
+    }
 }
 `
