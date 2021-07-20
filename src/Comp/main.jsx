@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
+import PostModel from './PostModel'
 const Main = () => {
   return (
     <Container>
@@ -79,6 +80,7 @@ const Main = () => {
           </SocialAction>
         </Article>
       </div>
+      <PostModel />
     </Container>
   )
 }

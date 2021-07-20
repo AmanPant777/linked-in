@@ -1,6 +1,8 @@
 import React from 'react'
+import { connect } from 'react-redux';
 import styled from 'styled-components'
-const Header = () => {
+import { signOutApi } from '../redux/action/actions';
+const Header = (props) => {
     return (
         <Container>
             <Content>
@@ -47,11 +49,13 @@ const Header = () => {
                         </NavList>
                         <User>
                             <a >
-                                <img src="/images/user.svg" alt="" />
-                                <span>Me</span>
-                                <img src="/images/down-icon.svg" alt="" />
+                                {props.user ? (<img src={props.user.photoUrl} />) : <img src="/images/user.svg" alt="" />}
+                                <span>Me
+                                    <img src="/images/down-icon.svg" alt="" />
+                                </span>
+
                             </a>
-                            <SignOut><a >Sign Out</a></SignOut>
+                            <SignOut onClick={() => props.signOut()}><a >Sign Out</a></SignOut>
                         </User>
                         <Work>
                             <a >
@@ -65,8 +69,13 @@ const Header = () => {
         </Container>
     )
 }
-
-export default Header
+const mapStateToProps = (state) => {
+    return { user: state.userState.user };
+};
+const mapDispatchToProps = (dispatch) => ({
+    signOut: () => dispatch(signOutApi())
+});
+export default connect(mapStateToProps, mapDispatchToProps)(Header)
 const Container = styled.div`
 background-color: white;
 top: 0;
@@ -189,7 +198,7 @@ a{
 }}}
 
 `
-const SignOut = styled.div`
+const SignOut = styled.button`
 position:absolute;
 top:80px;
 right:180px;
@@ -199,7 +208,7 @@ height:40px;
 font-size:16px;
 transition-duration:167ms;
 text-align: center;
-display:none;   
+display:flex;   
 border-radius: 0 0 5px 5px;
 @media (max-width:768px){
     top:65px;

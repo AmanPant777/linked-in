@@ -22,3 +22,11 @@ export const getUserAuth = () => {
     });
   };
 };
+export const signOutApi = () => {
+  return (dispatch) => {
+    auth
+      .signOut()
+      .then(() => dispatch(setUser(null)))
+      .catch((error) => console.log(error.message));
+  };
+};
