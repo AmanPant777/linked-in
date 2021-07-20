@@ -39,6 +39,14 @@ const Main = () => {
                         </a>
                         <button><i class="fas fa-ellipsis-h"></i></button>
                     </SharedArticle>
+                    <Description>
+                      Description
+                    </Description>
+                    <SharedImage>
+                      <a>
+                        <img src="https://media.gettyimages.com/photos/cristiano-ronaldo-of-juventus-celebrates-scoring-his-sides-second-picture-id1163338011?s=594x594"/>
+                      </a>
+                    </SharedImage>
                 </Article>
             </div>
         </Container>
@@ -94,7 +102,7 @@ button{
 }
 }
 &:nth-child(2){
-    
+
     display:flex;
     flex-wrap:wrap;
     padding:10px;
@@ -137,6 +145,30 @@ a{
         margin-left:10px;
         flex-grow:1;
         flex-basis: 0;
+
+        }
     }
 }
+button{
+border:none;
+fonr-size:12px;
+top:0;
+right:0;
+position:absolute;
+width:70px;
+}
+a>div{
+  padding: 10px;
+  align-items: flex-start;
+}
+`
+const Description=styled.div`
+text-align: center;
+color: rgba(0,0,0,0.9);
+padding: 0 16px;
+font-size: 20px;
+overflow:hidden;
+`
+const SharedImage=styled.div`
+margin-top: 8px;
 `
