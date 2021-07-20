@@ -47,6 +47,36 @@ const Main = () => {
                         <img src="https://media.gettyimages.com/photos/cristiano-ronaldo-of-juventus-celebrates-scoring-his-sides-second-picture-id1163338011?s=594x594"/>
                       </a>
                     </SharedImage>
+                    <SocialCount>
+                      <li>
+                        <button>
+                          <i class="far fa-thumbs-up"></i>
+                          <i class="fab fa-gratipay"></i>
+                        <span>75</span>
+                        </button>
+                      </li>
+                      <li>
+                        <a>2 Comments</a>
+                      </li>
+                    </SocialCount>
+                    <SocialAction>
+                      <button>
+                        <img src='/images/thumb-up.png'/>
+                      <span>Like</span>
+                      </button>
+                      <button>
+                        <img src='/images/comments.png'/>
+                      <span>Comments</span>
+                      </button>
+                      <button>
+                        <img src='/images/next.png'/>
+                      <span>Share</span>
+                      </button>
+                      <button>
+                        <img src='/images/send.png'/>
+                      <span>Send</span>
+                      </button>
+                    </SocialAction>
                 </Article>
             </div>
         </Container>
@@ -138,6 +168,8 @@ a{
     img{
         width: 50px;
         height:50px;
+        border-radius: 50%;
+        margin-top: 10px;
     }
     div{
         display:flex;
@@ -171,4 +203,61 @@ overflow:hidden;
 `
 const SharedImage=styled.div`
 margin-top: 8px;
+display: block;
+position: relative;
+background-color: #f9fafb;
+width: 100%;
+a>img{
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+`
+const SocialCount=styled.ul`
+list-style: none;
+line-height: 1.33;
+overflow: auto;
+border-bottom: 1px solid rgba(0,0,0,0.4);
+margin:2px 18px;
+padding: 8px 0;
+display: flex;
+li{
+  display: flex;
+margin-right: 10px;
+font-size: 12px;
+align-items: center;
+button{
+  background: transparent;
+  background-color: white;
+  border-radius: 20%;
+  padding: 5px 10px;
+  border: none;
+  i{
+    color: #0a66c2;
+    margin: 2px 7px;
+  }
+}
+}
+`
+const SocialAction=styled.div`
+align-items: center;
+display: flex;
+justify-content:center;
+margin: 0
+min-height:40px;
+padding: 4px 8px;
+button{
+  width: 70px;
+  height: 60px;
+  align-items: center;
+  background: transparent;
+  border: none;
+  img{
+    width: 100%;
+    height: 30px;
+    object-fit: contain;
+    cursor: pointer;
+
+  }
+}
 `
