@@ -1,86 +1,86 @@
 import React from 'react'
 import styled from 'styled-components'
 const Main = () => {
-    return (
-        <Container>
-            <ShareBox>
-                <div><img src="/images/user.svg" alt="" />
-                    <button>Share a post</button>
-                </div>
-                <div>
-                    <button>
-                        <i class="fas fa-images"></i>
-                        <span>Photo</span>
-                    </button>
-                    <button>
-                        <i class="fas fa-video-slash"></i>
-                        <span>Video</span>
-                    </button>
-                    <button>
-                        <i class="fad fa-calendar"></i>
-                        <span>Events</span>
-                    </button>
-                    <button>
-                        <i class="fas fa-newspaper"></i>
-                        <span>Article</span>
-                    </button>
-                </div>
-            </ShareBox>
-            <div>
-                <Article>
-                    <SharedArticle>
-                        <a>
-                            <img src="/images/user.svg" alt="" />
-                            <div>
-                                <span>Title</span>
-                                <span>Info</span>
-                                <span>Date</span>
-                            </div>
-                        </a>
-                        <button><i class="fas fa-ellipsis-h"></i></button>
-                    </SharedArticle>
-                    <Description>
-                      Description
-                    </Description>
-                    <SharedImage>
-                      <a>
-                        <img src="https://media.gettyimages.com/photos/cristiano-ronaldo-of-juventus-celebrates-scoring-his-sides-second-picture-id1163338011?s=594x594"/>
-                      </a>
-                    </SharedImage>
-                    <SocialCount>
-                      <li>
-                        <button>
-                          <i class="far fa-thumbs-up"></i>
-                          <i class="fab fa-gratipay"></i>
-                        <span>75</span>
-                        </button>
-                      </li>
-                      <li>
-                        <a>2 Comments</a>
-                      </li>
-                    </SocialCount>
-                    <SocialAction>
-                      <button>
-                        <img src='/images/thumb-up.png'/>
-                      <span>Like</span>
-                      </button>
-                      <button>
-                        <img src='/images/comments.png'/>
-                      <span>Comments</span>
-                      </button>
-                      <button>
-                        <img src='/images/next.png'/>
-                      <span>Share</span>
-                      </button>
-                      <button>
-                        <img src='/images/send.png'/>
-                      <span>Send</span>
-                      </button>
-                    </SocialAction>
-                </Article>
-            </div>
-        </Container>
-    )
+  return (
+    <Container>
+      <ShareBox>
+        <div><img src="/images/user.svg" alt="" />
+          <button>Share a post</button>
+        </div>
+        <div>
+          <button>
+            <i class="fas fa-images"></i>
+            <span>Photo</span>
+          </button>
+          <button>
+            <i class="fas fa-video-slash"></i>
+            <span>Video</span>
+          </button>
+          <button>
+            <i class="fad fa-calendar"></i>
+            <span>Events</span>
+          </button>
+          <button>
+            <i class="fas fa-newspaper"></i>
+            <span>Article</span>
+          </button>
+        </div>
+      </ShareBox>
+      <div>
+        <Article>
+          <SharedArticle>
+            <a>
+              <img src="/images/user.svg" alt="" />
+              <div>
+                <span>Title</span>
+                <span>Info</span>
+                <span>Date</span>
+              </div>
+            </a>
+            <button><i class="fas fa-ellipsis-h"></i></button>
+          </SharedArticle>
+          <Description>
+            Description
+          </Description>
+          <SharedImage>
+            <a>
+              <img src="https://media.gettyimages.com/photos/cristiano-ronaldo-of-juventus-celebrates-scoring-his-sides-second-picture-id1163338011?s=594x594" />
+            </a>
+          </SharedImage>
+          <SocialCount>
+            <li>
+              <button>
+                <i class="far fa-thumbs-up"></i>
+                <i class="fab fa-gratipay"></i>
+                <span>75</span>
+              </button>
+            </li>
+            <li>
+              <a>2 Comments</a>
+            </li>
+          </SocialCount>
+          <SocialAction>
+            <button>
+              <img src='/images/thumb-up.png' />
+              <span>Like</span>
+            </button>
+            <button>
+              <img src='/images/comments.png' />
+              <span>Comments</span>
+            </button>
+            <button>
+              <img src='/images/next.png' />
+              <span>Share</span>
+            </button>
+            <button>
+              <img src='/images/send.png' />
+              <span>Send</span>
+            </button>
+          </SocialAction>
+        </Article>
+      </div>
+    </Container>
+  )
 }
 
 export default Main
@@ -194,14 +194,14 @@ a>div{
   align-items: flex-start;
 }
 `
-const Description=styled.div`
+const Description = styled.div`
 text-align: center;
 color: rgba(0,0,0,0.9);
 padding: 0 16px;
 font-size: 20px;
 overflow:hidden;
 `
-const SharedImage=styled.div`
+const SharedImage = styled.div`
 margin-top: 8px;
 display: block;
 position: relative;
@@ -213,7 +213,7 @@ a>img{
   object-fit: contain;
 }
 `
-const SocialCount=styled.ul`
+const SocialCount = styled.ul`
 list-style: none;
 line-height: 1.33;
 overflow: auto;
@@ -239,7 +239,7 @@ button{
 }
 }
 `
-const SocialAction=styled.div`
+const SocialAction = styled.div`
 align-items: center;
 display: flex;
 justify-content:center;
@@ -247,7 +247,7 @@ margin: 0
 min-height:40px;
 padding: 4px 8px;
 button{
-  width: 70px;
+  width: 100%;
   height: 60px;
   align-items: center;
   background: transparent;

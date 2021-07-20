@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import { connect } from 'react-redux'
 const Login = () => {
   return (
     <Container>
@@ -13,22 +14,28 @@ const Login = () => {
         </div>
       </Nav>
       <Section>
-          <Hero>
-              <h1>Welcome to yur professional community</h1>
-              <img src="/images/login-hero.svg" alt="" />
-          </Hero>
-          <Form>
-              <Google>
-                  <img src="/images/google.svg" alt="" />
-                  Sign In With Google
-              </Google>
-          </Form>
+        <Hero>
+          <h1>Welcome to yur professional community</h1>
+          <img src="/images/login-hero.svg" alt="" />
+        </Hero>
+        <Form>
+          <Google>
+            <img src="/images/google.svg" alt="" />
+            Sign In With Google
+          </Google>
+        </Form>
       </Section>
     </Container>
   );
 };
+const mapStateToProps = state => {
+  return {}
+}
+const mapDispatchToProps = dispatch => ({
 
-export default Login;
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(Login);
 
 const Container = styled.div`
   padding: 0px;
@@ -78,7 +85,7 @@ const SignIn = styled.a`
   }
 `;
 
-const Section=styled.section`
+const Section = styled.section`
 min-height: 700px;
 padding-bottom: 138px;
 padding: 60px 0;
@@ -96,7 +103,7 @@ flex-wrap: wrap;
     min-height: 0px;
 }
 `
-const Hero=styled.div`
+const Hero = styled.div`
 width: 100%;
 h1{padding-bottom:0;
 width:55%;
@@ -125,14 +132,14 @@ img{
     }
 }
 `
-const Form=styled.div`
+const Form = styled.div`
 margin-top: 100px;
 width: 408px;
 @media (max-width:748px){
     margin-top: 20px;
 }
 `
-const Google=styled.button`
+const Google = styled.button`
 width: 100%;
 background-color: #fff;
 align-items: center;
