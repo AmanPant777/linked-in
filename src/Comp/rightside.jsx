@@ -27,6 +27,7 @@ const Rightside = () => {
                             <button>Follow</button>
                         </div>
                     </li>
+
                 </FeedList>
                 <Recommendation>
                     View all recommendation

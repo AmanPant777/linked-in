@@ -20,12 +20,18 @@ const PostModel = () => {
                 <SharedCreation>
                     <AttachAssets>
                         <AssetButton>
-                            <img src="/images/next.png" alt="" />
+                            <img src="/images/image.png" alt="" />
                         </AssetButton>
                         <AssetButton>
-                            <img src="/images/send.png" alt="" />
+                            <img src="/images/youtube.png" alt="" />
                         </AssetButton>
                     </AttachAssets>
+                    <ShareComments>
+                      <AssetButton>
+                        <img src="/images/comm.png" alt=""/>AnyOne
+                      </AssetButton>
+                    </ShareComments>
+                      <PoostButton>Post </PoostButton>
                 </SharedCreation>
             </Content>
         </Container>
@@ -108,5 +114,21 @@ img{
     width:30px;
     height: 30px;
     object-fit: contain;
+}
+`
+const ShareComments=styled.div`
+padding-left:12px;
+margin-right:auto;
+border-left:1px solid rgba(0,0,0,0.15);
+`
+const PoostButton=styled.button`
+max-width:60px;
+width:60px;
+height:40px;
+border-radius:20px;
+background:#0a66c2;
+color:white;
+&:hover{
+  background:#004192;
 }
 `
