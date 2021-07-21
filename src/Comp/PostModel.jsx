@@ -1,7 +1,8 @@
-import React from 'react'
+import React, { useState } from 'react'
 import styled from 'styled-components'
 
 const PostModel = () => {
+    const [editorText, setEditorText] = useState("")
     return (
         <Container>
             <Content>
@@ -16,6 +17,13 @@ const PostModel = () => {
                         <img src="/images/user.svg" alt="" />
                         <span>Name</span>
                     </UserInfo>
+                    <Editor>
+                        <textarea
+                            value={editorText}
+                            placeholder='What do yu want to talk'
+                            onChange={e => setEditorText(e.target.value)}
+                            autoFocus={true}>
+                        </textarea></Editor>
                 </SharedContent>
                 <SharedCreation>
                     <AttachAssets>
@@ -26,12 +34,14 @@ const PostModel = () => {
                             <img src="/images/youtube.png" alt="" />
                         </AssetButton>
                     </AttachAssets>
-                    <ShareComments>
-                      <AssetButton>
-                        <img src="/images/comm.png" alt=""/>AnyOne
-                      </AssetButton>
-                    </ShareComments>
-                      <PoostButton>Post </PoostButton>
+                    <ShareComment>
+                        <AssetButton>
+                            <img src="/images/comm.png" alt="" />
+                            Anyone
+                        </AssetButton>
+
+                    </ShareComment>
+                    <PostButton>Post</PostButton>
                 </SharedCreation>
             </Content>
         </Container>
@@ -116,19 +126,32 @@ img{
     object-fit: contain;
 }
 `
-const ShareComments=styled.div`
-padding-left:12px;
-margin-right:auto;
-border-left:1px solid rgba(0,0,0,0.15);
+const Editor = styled.div`
+padding: 20px;
+textarea{
+    width:100%;
+    min-height: 100px;
+    resize:none;
+    border:none;
+}
 `
-const PoostButton=styled.button`
-max-width:60px;
-width:60px;
+const ShareComment = styled.div`
+margin-right:auto;
+font-size:16px;
+align-items:center;
+border-left: 1px solid rgba(0,0,0,0.5);
+padding:0 10px;
+
+`
+const PostButton = styled.button`
+padding: 10px;
+margin-right:10px;
+border-radius: 20px;
+width: 50px;
 height:40px;
-border-radius:20px;
-background:#0a66c2;
+background-color: #0a66c2;
 color:white;
 &:hover{
-  background:#004192;
+    background-color: #004192;
 }
 `
