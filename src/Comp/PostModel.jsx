@@ -49,40 +49,37 @@ const PostModel = (props) => {
                                     onChange={e => setEditorText(e.target.value)}
                                     autoFocus={true}>
                                 </textarea>
-                                {assetArea === 'image' ? (
-                                    <UploadImage>
-                                        <input
-                                            type="file"
-                                            accept='image/gif,image/png,image/jpeg'
-                                            name="image"
-                                            id='file'
-                                            style={{ display: 'none' }}
-                                            onChange={HandleChange}
-                                        />
-                                        <p><label htmlFor="file">Select an image to share</label></p>
-                                        {shareImage && <img src={URL.createObjectURL(shareImage)} />}
-                                    </UploadImage>
-                                ) : assetArea === 'media' ? (<>
+                                {assetArea === 'image' ? (<UploadImage>
                                     <input
-                                        type="text"
-                                        placeholder="Add a video link"
-                                        valur={videoLink}
-                                        onChange={(e) => setVideoLink(e.target.value)}
+                                        type="file"
+                                        accept='image/gif,image/png,image/jpeg'
+                                        name="image"
+                                        id='file'
+                                        style={{ display: 'none' }}
+                                        onChange={HandleChange}
                                     />
-                                    {videoLink && <ReactPlayer url={videoLink} width={'100 %'} />}
-                                </>) : (<p>Post video or image</p>)}
-
-
+                                    <p><label htmlFor="file">Select an image to share</label></p>
+                                    {shareImage && <img src={URL.createObjectURL(shareImage)} />}
+                                </UploadImage>)
+                                    : assetArea === 'video' && (<>
+                                        <input
+                                            type="text"
+                                            placeholder="Add a video link"
+                                            valur={videoLink}
+                                            onChange={(e) => setVideoLink(e.target.value)}
+                                        />
+                                        {videoLink && <ReactPlayer url={videoLink} width={'100 %'} />}
+                                    </>)}
                             </Editor>
                         </SharedContent>
                         <SharedCreation>
-                            <AttachAssets onClick={() => switchAssetArea('image')}>
-                                <AssetButton>
+                            <AttachAssets >
+                                <AssetButton onClick={() => switchAssetArea('image')}>
                                     <img src="/images/image.png" alt="" />
                                 </AssetButton>
-                                <AssetButton onClick={() => switchAssetArea('media')}>
+                                <AssetButtons onClick={() => switchAssetArea('video')}>
                                     <img src="/images/youtube.png" alt="" />
-                                </AssetButton>
+                                </AssetButtons>
                             </AttachAssets>
                             <ShareComment>
                                 <AssetButton>
@@ -230,5 +227,13 @@ img{
     height: 100px;
     object-fit: contain;
 
+}
+`
+const AssetButtons = styled.button`
+width: 40px;
+height: 37px;
+img{
+    width: 30px;
+    object-fit: contain;
 }
 `
