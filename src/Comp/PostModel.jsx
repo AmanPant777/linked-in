@@ -1,13 +1,23 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
-
+import ReactPlayer from 'react-player'
 const PostModel = (props) => {
     const [editorText, setEditorText] = useState("")
+    const [videoLink, setVideoLink] = useState("")
+    const [assetArea, setAssetArea] = useState("")
+    const [shareImage, setShareImage] = useState('')
+    const switchAssetArea = (area) => {
+        setShareImage("")
+        setVideoLink("")
+        setAssetArea(area)
+    }
     const reset = (e) => {
         setEditorText('');
+        setVideoLink('');
+        setShareImage('')
+        setAssetArea('')
         props.handleClick(e)
     }
-    const [shareImage, setShareImage] = useState('')
     const HandleChange = (e) => {
         const image = e.target.files[0]
         if (image === '' || image === undefined) {
@@ -39,24 +49,38 @@ const PostModel = (props) => {
                                     onChange={e => setEditorText(e.target.value)}
                                     autoFocus={true}>
                                 </textarea>
-                                <input
-                                    type="file"
-                                    accept='image/gif,image/png,image/jpeg'
-                                    name="image"
-                                    id='file'
-                                    style={{ display: 'none' }}
-                                    onChange={HandleChange}
-                                />
-                                <p><label htmlFor="file">Select an image to share</label></p>
-                                {shareImage && <img src={URL.createObjectURL(shareImage)} />}
+                                {assetArea === 'image' ? (
+                                    <UploadImage>
+                                        <input
+                                            type="file"
+                                            accept='image/gif,image/png,image/jpeg'
+                                            name="image"
+                                            id='file'
+                                            style={{ display: 'none' }}
+                                            onChange={HandleChange}
+                                        />
+                                        <p><label htmlFor="file">Select an image to share</label></p>
+                                        {shareImage && <img src={URL.createObjectURL(shareImage)} />}
+                                    </UploadImage>
+                                ) : assetArea === 'media' ? (<>
+                                    <input
+                                        type="text"
+                                        placeholder="Add a video link"
+                                        valur={videoLink}
+                                        onChange={(e) => setVideoLink(e.target.value)}
+                                    />
+                                    {videoLink && <ReactPlayer url={videoLink} width={'100 %'} />}
+                                </>) : (<p>Post video or image</p>)}
+
+
                             </Editor>
                         </SharedContent>
                         <SharedCreation>
-                            <AttachAssets>
+                            <AttachAssets onClick={() => switchAssetArea('image')}>
                                 <AssetButton>
                                     <img src="/images/image.png" alt="" />
                                 </AssetButton>
-                                <AssetButton>
+                                <AssetButton onClick={() => switchAssetArea('media')}>
                                     <img src="/images/youtube.png" alt="" />
                                 </AssetButton>
                             </AttachAssets>
@@ -197,5 +221,14 @@ img{
     width: 10px;
     border:none;
     object-fit: contain;
+}
+`
+const UploadImage = styled.div`
+text-align: center;
+img{
+    width:100%;
+    height: 100px;
+    object-fit: contain;
+
 }
 `
