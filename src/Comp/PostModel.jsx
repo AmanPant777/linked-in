@@ -1,50 +1,79 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
 
-const PostModel = () => {
+const PostModel = (props) => {
     const [editorText, setEditorText] = useState("")
+    const reset = (e) => {
+        setEditorText('');
+        props.handleClick(e)
+    }
+    const [shareImage, setShareImage] = useState('')
+    const HandleChange = (e) => {
+        const image = e.target.files[0]
+        if (image === '' || image === undefined) {
+            alert(`image is of type ${typeof (image)}`)
+        }
+        setShareImage(image)
+    }
     return (
-        <Container>
-            <Content>
-                <Header>
-                    <h2>Create a Post</h2>
-                    <button>
-                        <i class="fas fa-window-close"></i>
-                    </button>
-                </Header>
-                <SharedContent>
-                    <UserInfo>
-                        <img src="/images/user.svg" alt="" />
-                        <span>Name</span>
-                    </UserInfo>
-                    <Editor>
-                        <textarea
-                            value={editorText}
-                            placeholder='What do yu want to talk'
-                            onChange={e => setEditorText(e.target.value)}
-                            autoFocus={true}>
-                        </textarea></Editor>
-                </SharedContent>
-                <SharedCreation>
-                    <AttachAssets>
-                        <AssetButton>
-                            <img src="/images/image.png" alt="" />
-                        </AssetButton>
-                        <AssetButton>
-                            <img src="/images/youtube.png" alt="" />
-                        </AssetButton>
-                    </AttachAssets>
-                    <ShareComment>
-                        <AssetButton>
-                            <img src="/images/comm.png" alt="" />
-                            Anyone
-                        </AssetButton>
+        <>
+            {props.showModel === 'open' &&
+                <Container>
+                    <Content>
+                        <Header>
+                            <h2>Create a Post</h2>
+                            <CloseButton onClick={event => reset(event)}>
+                                <img src="/images/close.png" alt="" />
+                            </CloseButton>
 
-                    </ShareComment>
-                    <PostButton>Post</PostButton>
-                </SharedCreation>
-            </Content>
-        </Container>
+                        </Header>
+                        <SharedContent>
+                            <UserInfo>
+                                <img src="/images/user.svg" alt="" />
+                                <span>Name</span>
+                            </UserInfo>
+                            <Editor>
+                                <textarea
+                                    value={editorText}
+                                    placeholder='What do yu want to talk'
+                                    onChange={e => setEditorText(e.target.value)}
+                                    autoFocus={true}>
+                                </textarea>
+                                <input
+                                    type="file"
+                                    accept='image/gif,image/png,image/jpeg'
+                                    name="image"
+                                    id='file'
+                                    style={{ display: 'none' }}
+                                    onChange={HandleChange}
+                                />
+                                <p><label htmlFor="file">Select an image to share</label></p>
+                                {shareImage && <img src={URL.createObjectURL(shareImage)} />}
+                            </Editor>
+                        </SharedContent>
+                        <SharedCreation>
+                            <AttachAssets>
+                                <AssetButton>
+                                    <img src="/images/image.png" alt="" />
+                                </AssetButton>
+                                <AssetButton>
+                                    <img src="/images/youtube.png" alt="" />
+                                </AssetButton>
+                            </AttachAssets>
+                            <ShareComment>
+                                <AssetButton>
+                                    <img src="/images/comm.png" alt="" />
+                                    Anyone
+                                </AssetButton>
+
+                            </ShareComment>
+                            <PostButton disabled={!editorText ? true : false}>Post</PostButton>
+                        </SharedCreation>
+                    </Content>
+                </Container>
+            }
+
+        </>
     )
 }
 
@@ -58,6 +87,7 @@ bottom:0;
 color:black;
 background-color: rgba(0,0,0,0.8);
 z-index:999;
+animation:fadeIn 0.5s;
 `
 const Content = styled.div`
 width:100%;
@@ -83,6 +113,12 @@ font-weight: 400;
 display: flex;
 justify-content: space-between;
 align-items: center;
+img{
+    width:20px;
+    object-fit: contain;
+    border:none;
+    background: transparent;
+}
 `
 const SharedContent = styled.div`
 display: flex;
@@ -149,9 +185,17 @@ margin-right:10px;
 border-radius: 20px;
 width: 50px;
 height:40px;
-background-color: #0a66c2;
 color:white;
 &:hover{
     background-color: #004192;
+}
+background: ${props => props.disabled ? 'rbga(0,0,0,8)' : '#0a66c2;'};
+`
+const CloseButton = styled.button`
+cursor: pointer;
+img{
+    width: 10px;
+    border:none;
+    object-fit: contain;
 }
 `
