@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
 import ReactPlayer from 'react-player'
+import { connect } from 'react-redux'
 const PostModel = (props) => {
     const [editorText, setEditorText] = useState("")
     const [videoLink, setVideoLink] = useState("")
@@ -39,8 +40,8 @@ const PostModel = (props) => {
                         </Header>
                         <SharedContent>
                             <UserInfo>
-                                <img src="/images/user.svg" alt="" />
-                                <span>Name</span>
+                                {props.user.photoURL ? (<img src={props.photoURL} />) : (<img src="/images/user.svg" alt="" />)}
+                                <span>{props.user.displayName}</span>
                             </UserInfo>
                             <Editor>
                                 <textarea
@@ -97,8 +98,12 @@ const PostModel = (props) => {
         </>
     )
 }
-
-export default PostModel
+const mapStateToProps = state => {
+    return {
+        user: state.userState.user
+    }
+}
+export default connect(mapStateToProps)(PostModel)
 const Container = styled.div`
 position: fixed;
 top: 0;
