@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import PostModel from "./PostModel";
-const Main = () => {
+const Main = (props) => {
   const [showModel, setShowModel] = useState("close");
   const handleClick = (e) => {
     e.preventDefault();
@@ -23,8 +23,12 @@ const Main = () => {
     <Container>
       <ShareBox>
         <div>
-          <img src="/images/user.svg" alt="" />
-          <button onClick={handleClick}>Share a post</button>
+          {props.user && props.user.photoURL ? (
+            <img src={props.user.photoURL} />
+          ) : (
+            <img src="/images/user.svg" alt="" />
+          )}
+          <button onClick={handleClick} disabled={props.loading ? true : false}>Share a post</button>
         </div>
         <div>
           <button>
@@ -46,63 +50,74 @@ const Main = () => {
         </div>
       </ShareBox>
       <div>
-        <Article>
-          <SharedArticle>
-            <a>
-              <img src="/images/user.svg" alt="" />
-              <div>
-                <span>Title</span>
-                <span>Info</span>
-                <span>Date</span>
-              </div>
-            </a>
-            <button>
-              <i class="fas fa-ellipsis-h"></i>
-            </button>
-          </SharedArticle>
-          <Description>Description</Description>
-          <SharedImage>
-            <a>
-              <img src="https://media.gettyimages.com/photos/cristiano-ronaldo-of-juventus-celebrates-scoring-his-sides-second-picture-id1163338011?s=594x594" />
-            </a>
-          </SharedImage>
-          <SocialCount>
-            <li>
+        {props.loading ? (<img src='images/spinner.gif' />) : (
+          <Article>
+            <SharedArticle>
+              <a>
+                <img src="/images/user.svg" alt="" />
+                <div>
+                  <span>Title</span>
+                  <span>Info</span>
+                  <span>Date</span>
+                </div>
+              </a>
               <button>
-                <i class="far fa-thumbs-up"></i>
-                <i class="fab fa-gratipay"></i>
-                <span>75</span>
+                <i class="fas fa-ellipsis-h"></i>
               </button>
-            </li>
-            <li>
-              <a>2 Comments</a>
-            </li>
-          </SocialCount>
-          <SocialAction>
-            <button>
-              <img src="/images/thumb-up.png" />
-              <span>Like</span>
-            </button>
-            <button>
-              <img src="/images/comments.png" />
-              <span>Comments</span>
-            </button>
-            <button>
-              <img src="/images/next.png" />
-              <span>Share</span>
-            </button>
-            <button>
-              <img src="/images/send.png" />
-              <span>Send</span>
-            </button>
-          </SocialAction>
-        </Article>
+            </SharedArticle>
+            <Description>Description</Description>
+            <SharedImage>
+              <a>
+                <img src="https://media.gettyimages.com/photos/cristiano-ronaldo-of-juventus-celebrates-scoring-his-sides-second-picture-id1163338011?s=594x594" />
+              </a>
+            </SharedImage>
+            <SocialCount>
+              <li>
+                <button>
+                  <i class="far fa-thumbs-up"></i>
+                  <i class="fab fa-gratipay"></i>
+                  <span>75</span>
+                </button>
+              </li>
+              <li>
+                <a>2 Comments</a>
+              </li>
+            </SocialCount>
+            <SocialAction>
+              <button>
+                <img src="/images/thumb-up.png" />
+                <span>Like</span>
+              </button>
+              <button>
+                <img src="/images/comments.png" />
+                <span>Comments</span>
+              </button>
+              <button>
+                <img src="/images/next.png" />
+                <span>Share</span>
+              </button>
+              <button>
+                <img src="/images/send.png" />
+                <span>Send</span>
+              </button>
+            </SocialAction>
+          </Article>
+        )}
+
       </div>
+
       <PostModel showModel={showModel} handleClick={handleClick} />
+
+
     </Container>
   );
 };
-
+const mapStateToProps = state => {
+  return {
+    user: state.userState.user,
+    loading: state.articleState.loading
+  }
+}
 export default Main;
 const Container = styled.div`
   grid-area: main;
@@ -206,7 +221,7 @@ a{
 }
 button{
 border:none;
-fonr-size:12px;
+font-size:12px;
 top:0;
 right:0;
 position:absolute;
@@ -283,4 +298,4 @@ button{
 
   }
 }
-`;
+`

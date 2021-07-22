@@ -81,13 +81,13 @@ const PostModel = (props) => {
                                     {shareImage && <img src={URL.createObjectURL(shareImage)} />}
                                 </UploadImage>)
                                     : assetArea === 'video' && (<>
-                                        <input
+                                        <input style={{ width: '100%' }}
                                             type="text"
                                             placeholder="Add a video link"
                                             valur={videoLink}
                                             onChange={(e) => setVideoLink(e.target.value)}
                                         />
-                                        {videoLink && <ReactPlayer url={videoLink} width={'100 %'} />}
+                                        {videoLink && <ReactPlayer url={videoLink} width={'400px'} height={'200px'} />}
                                     </>)}
                             </Editor>
                         </SharedContent>
@@ -139,6 +139,7 @@ animation:fadeIn 0.5s;
 `
 const Content = styled.div`
 width:100%;
+padding: 40px 0;
 max-width:550px;
 max-height: 90%;
 overflow:initial;
@@ -149,10 +150,11 @@ display: flex;
 flex-direction: column;
 top:32px;
 margin:0 auto;
+
 `
 const Header = styled.div`
 display: block;
-padding: 16px 20px ;
+padding: 0px 20px ;
 border-bottom: 1px solid rgba(0,0,0,0.6);
 font-size: 16px;
 line-height: 1.5;

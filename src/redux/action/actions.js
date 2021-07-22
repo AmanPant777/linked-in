@@ -5,6 +5,11 @@ const setUser = (payload) => ({
   user: payload,
 });
 
+const setLoading = (status) => ({
+  type: "SET_LOADING_STATUS",
+  status: status,
+});
+
 export const signInApi = () => {
   return (dispatch) => {
     auth
@@ -33,6 +38,7 @@ export const signOutApi = () => {
 
 export const postArticleAPI = (payload) => {
   return (dispatch) => {
+    dispatch(setLoading(true));
     if (payload.image != "") {
       const upload = storage
         .ref(`images/${payload.image.name}`)
@@ -64,6 +70,21 @@ export const postArticleAPI = (payload) => {
           });
         }
       );
+      dispatch(setLoading(false));
+    } else if (payload.video) {
+      db.collection("articles").add({
+        actor: {
+          description: payload.user.email,
+          title: payload.user.displayName,
+          date: payload.timestamp,
+          image: payload.user.photoURL,
+        },
+        video: payload.video,
+        sharedImg: "",
+        comments: 0,
+        description: payload.description,
+      });
+      dispatch(setLoading(false));
     }
   };
 };
