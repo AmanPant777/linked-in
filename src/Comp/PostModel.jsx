@@ -2,11 +2,29 @@ import React, { useState } from 'react'
 import styled from 'styled-components'
 import ReactPlayer from 'react-player'
 import { connect } from 'react-redux'
+import firebase from 'firebase'
+import { postArticleAPI } from '../redux/action/actions'
 const PostModel = (props) => {
     const [editorText, setEditorText] = useState("")
     const [videoLink, setVideoLink] = useState("")
     const [assetArea, setAssetArea] = useState("")
     const [shareImage, setShareImage] = useState('')
+    const postArticle = (e) => {
+        e.preventDefault();
+        if (e.target !== e.currentTarget) {
+            return;
+        }
+        const payload = {
+            image: shareImage,
+            video: videoLink,
+            user: props.user,
+            description: editorText,
+            timestamp: firebase.firestore.Timestamp.now()
+        }
+        props.postArticle(payload)
+        reset(e)
+    }
+
     const switchAssetArea = (area) => {
         setShareImage("")
         setVideoLink("")
@@ -89,7 +107,7 @@ const PostModel = (props) => {
                                 </AssetButton>
 
                             </ShareComment>
-                            <PostButton disabled={!editorText ? true : false}>Post</PostButton>
+                            <PostButton onClick={event => postArticle(event)} disabled={!editorText ? true : false}>Post</PostButton>
                         </SharedCreation>
                     </Content>
                 </Container>
@@ -98,12 +116,16 @@ const PostModel = (props) => {
         </>
     )
 }
+
 const mapStateToProps = state => {
     return {
         user: state.userState.user
     }
 }
-export default connect(mapStateToProps)(PostModel)
+const mapDispatchToProps = (dispatch) => ({
+    postArticle: (payload) => dispatch(postArticleAPI(payload))
+})
+export default connect(mapStateToProps, mapDispatchToProps)(PostModel)
 const Container = styled.div`
 position: fixed;
 top: 0;

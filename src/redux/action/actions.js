@@ -38,7 +38,7 @@ export const postArticleAPI = (payload) => {
         .ref(`images/${payload.image.name}`)
         .put(payload.image);
       upload.on(
-        "State_changed",
+        "state_changed",
         (snapshot) => {
           const progress =
             (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
